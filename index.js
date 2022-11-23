@@ -1,5 +1,6 @@
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 
 // Routes
@@ -19,6 +20,8 @@ require('./src/config/database')
   
 app.use(express.json())
 app.use(express.urlencoded());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
