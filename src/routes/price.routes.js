@@ -3,6 +3,7 @@ const {Router}= require('express');
 const router = Router();
 const priceController = require('../controller/price.controller')
 const {createPriceValidator} = require('../validator/price.validator')
+const {signup} = 
 
  
 
@@ -22,7 +23,7 @@ const {createPriceValidator} = require('../validator/price.validator')
 
  router.post('/acceptnewprice',createPriceValidator,   priceController.newPrice)
 
- router.post('/deletenewprice',createPriceValidator,   priceController.DeletePrice)
+ router.delete('/deletenewprice',createPriceValidator,   priceController.DeletePrice)
 
 
  module.exports = router
