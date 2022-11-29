@@ -1,6 +1,7 @@
 const Users = require('../model/user.model')
 const passwordUtils = require('../utils/helpers')
-
+const signToken = require('../utils/helpers')
+const verifyToken = require('../utils/helpers')
 
 async function userSignup  (request, response)  {
     // console.log('Login');
@@ -36,11 +37,75 @@ async function userSignup  (request, response)  {
      })
   }
 };
-async function userLogin (request, response) {
-   if ( userName || !password )return response.send(200);
-   const userDb = await newUser.findOne({ userName })
+async function signin (request, response) {
+  const {email, password} = request.body;
+   if ( !email || !password )return response.status(400).send({message: "invalid input parameter", });
+   const userDb = await Users.findOne({ email });
    if (!userDb) return response.send(401);
+   const isValid = await passwordUtils.comparePassword(password, userDb.password);
+   console.log(isValid);
+
+   if(isValid){
+    console.log("authenticated sucessfully")
+    const jwt = await passwordUtils.signToken(userDb.id, userDb.userName, userDb.email ,userDb.role, userDb.status )
+    return response.status(200).send({
+      status : "successful",
+      message: "logged in sucessfully",
+      data: {userDetails: userDb, token: jwt}
+    });
+   }else{
+    console.log("failed to authenticate")
+    return response.status(401).send({
+      message: "login failed"
+    })
+   }
+   
 }
 
-module.exports = {userSignup,userLogin};
+async function updateUserStatus (request, response) {
+  try {
+    const userId = request.params.userId
+    console.log(userId);
+    const query = {_id: userId}
+    const user = await Users.updateOne(query, request.body)
+    
+    response.status(200).send({
+      status : "success",
+      message:"User updated Successfully",
+  });
+
+}catch(err){
+  console.log(err)
+  response.status(500).send({
+      status : "error",
+      message: "Signup failed",
+      data: null
+   })
+}
+}
+
+async function getUserid (request, response) {
+  console.log("ywk")
+//   try {
+//     const userId = request.params.userId
+//     console.log(userId);
+//     const query = {userId : userId}
+//     const users = await Users.findOne(query)
+
+//     response.status(200).send({
+//       status : "success",
+//       message:"User sucessfully created",
+//       data: saveUser
+//   })
+
+// }catch(err){
+//   console.log(err)
+//   response.status(500).send({
+//       status : "error",
+//       message: "Could not get user id",
+//       data: null
+//    })
+// }
+}
+module.exports = {userSignup, updateUserStatus, getUserid, signin };
 

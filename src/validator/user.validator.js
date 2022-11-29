@@ -1,4 +1,4 @@
-const { check, userValidationResult } = require('express-validator');
+const { check, validationResult } = require('express-validator');
 
 exports.signUpValidator = [
   check('email')
@@ -31,16 +31,25 @@ exports.signUpValidator = [
     .withMessage(
       'password  is required. Minimum of 8 characters required.'
     ),
+
+    check('role')
+    .trim()
+    .isString()
+    .withMessage('Role Has to be a string.')
+    .isLength({ min: 3 })
+    .withMessage(
+      'Role  is required. Minimum of 3 characters required.'
+    ),
     
     
     
-  (req, res, next) => {
-    const error = this.signUpValidator(req);
-    if (!error.isEmpty())
-      return res.status(400).send({
-        error: error.array().map((signup) => `${signup.param} Error - ${signup.msg}`),
-      });
-    next();
-  },
+    (req, res, next) => {
+      const error = validationResult(req);
+      if (!error.isEmpty())
+        return res.status(400).send({
+          error: error.array().map((item) => `${item.param} Error - ${item.msg}`),
+        });
+      next();
+    },
 ];
 

@@ -21,6 +21,9 @@ const UserSchema = new mongoose.Schema({
     forgotPassword: {
         type: mongoose.SchemaTypes.String,
     },
+    role: {
+        type: mongoose.SchemaTypes.String,
+    },
     createdAt: {
         type: mongoose.SchemaTypes.Date,
         required: true,
