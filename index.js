@@ -3,7 +3,7 @@ const express = require('express');
 
 
 // Routes
-//  const itemRouter = require('./src/routes/item.routes')
+ const itemRouter = require('./src/routes/item.routes')
  const priceRouter = require('./src/routes/price.routes')
 // const marketRoute = require('./routes/market');
 // const authRoute = require('./routes/auth')
@@ -33,7 +33,7 @@ app.get("/",(request, response) => {
 
 
 
-// app.use( '/api/item', itemRouter)
+app.use( '/api/items', itemRouter)
 app.use( '/api/price',priceRouter)
 // app.use( '/api/market',marketRoute)
 // app.use( '/api/auth',authRoute)
