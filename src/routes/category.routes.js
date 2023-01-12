@@ -11,15 +11,15 @@ const categoryController = require('../controller/category.controller');
 
 
 
- router.get('/',    categoryController.getAllItems);
+ router.get('/',    categoryController.getAllCategory);
  
- router.post('/addcategory',  categoryController.addItems);
+ router.post('/addcategory',  categoryController.addCategory);
 
- router.put('/:categoryId', categoryController.updateItems)
+ router.put('/:categoryId', categoryController.updateCategory)
 
- router.get('/:categoryd', categoryController.getItemsById)
+ router.get('/:categoryId', categoryController.getCategoryById)
 
- router.delete('/:categoryId', categoryController.deleteItemsById)
+ router.delete('/:categoryId', categoryController.deleteCategoryById)
 
 
 
