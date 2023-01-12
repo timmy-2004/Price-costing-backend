@@ -1,4 +1,4 @@
-const itemModel = require('../model/category.model')
+const categoryModel = require('../model/category.model')
 
 async function getAllCategory(request, response) {
     console.log('category');
@@ -9,8 +9,7 @@ async function getAllCategory(request, response) {
             message: "category fetched succesfully",
             data: category
         })
-
-
+        
     }catch(err){
         console.log(err)
         response.status(500).send({
@@ -27,11 +26,11 @@ async function addCategory(request, response) {
     console.log('New category');
     try{
         let data = request.body
-        const saveCategory = await  itemModel.create(data)
+        const saveCategory = await  categoryModel.create(data)
         response.status(200).send({
             status : "success",
             message: "category added succesfully",
-            data: saveItem
+            data: saveCategory
         })
     
     }catch(err){
@@ -98,11 +97,11 @@ async function deleteCategoryById(request, response) {
         const categoryId = request.params.categoryId
         console.log(categoryId);
         const query = {categoryId :categoryId}
-        const items = await  categoryModel.deleteOne(query)
+        const category = await  categoryModel.deleteOne(query)
         response.status(200).send({
             status : "success",
             message: "item deleted succesfully",
-            data: items
+            data: category
         })
     
 
