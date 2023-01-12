@@ -1,16 +1,15 @@
-const itemModel = require('../model/items.model')
+const categoryModel = require('../model/category.model')
 
-async function getAllItems(request, response) {
-    console.log('item');
+async function getAllCategory(request, response) {
+    console.log('category');
     try{
-        const items = await  itemModel.find()
+        const category = await  categoryModel.find()
         response.status(200).send({
             status : "success",
-            message: "items fetched succesfully",
-            data: items
+            message: "category fetched succesfully",
+            data: category
         })
-
-
+        
     }catch(err){
         console.log(err)
         response.status(500).send({
@@ -23,15 +22,15 @@ async function getAllItems(request, response) {
 };
 
 // createitem
-async function addItems(request, response) {
-    console.log('New item');
+async function addCategory(request, response) {
+    console.log('New category');
     try{
         let data = request.body
-        const saveItem = await  itemModel.create(data)
+        const saveCategory = await  categoryModel.create(data)
         response.status(200).send({
             status : "success",
-            message: "Price added succesfully",
-            data: saveItem
+            message: "category added succesfully",
+            data: saveCategory
         })
     
     }catch(err){
@@ -45,15 +44,15 @@ async function addItems(request, response) {
  
 };
 
-async function updateItems(request, response) {
+async function updateCategory(request, response) {
     try{
-        const itemId = request.params.itemId
-        console.log(itemId);
-        const query = {itemId :itemId}
-        const items = await  itemModel.updateOne(query, request.body)
+        const categoryId = request.params.categoryId
+        console.log(categoryId);
+        const query = {categoryId :categoryId}
+        const items = await  categoryModel.updateOne(query)
         response.status(200).send({
             status : "success",
-            message: "item updated succesfully",
+            message: "category updated succesfully",
             data: items
         })
     
@@ -69,15 +68,15 @@ async function updateItems(request, response) {
 };
 
 // get item by id
-async function getItemsById(request, response) {
+async function getCategoryById(request, response) {
     try{
-        const itemId = request.params.itemId
-        console.log(itemId);
-        const query = {itemId :itemId}
-        const items = await  itemModel.findOne(query)
+        const categoryId = request.params.categoryId
+        console.log(categoryId);
+        const query = {categoryId :categoryId}
+        const items = await  categoryModel.findOne(query)
         response.status(200).send({
             status : "success",
-            message: "item fetched succesfully",
+            message: "category fetched succesfully",
             data: items
         })
     
@@ -93,16 +92,16 @@ async function getItemsById(request, response) {
 };
 
 // delete by id
-async function deleteItemsById(request, response) {
+async function deleteCategoryById(request, response) {
     try{
-        const itemId = request.params.itemId
-        console.log(itemId);
-        const query = {itemId :itemId}
-        const items = await  itemModel.deleteOne(query)
+        const categoryId = request.params.categoryId
+        console.log(categoryId);
+        const query = {categoryId :categoryId}
+        const category = await  categoryModel.deleteOne(query)
         response.status(200).send({
             status : "success",
             message: "item deleted succesfully",
-            data: items
+            data: category
         })
     
 
@@ -119,4 +118,4 @@ async function deleteItemsById(request, response) {
 
 
 
-module.exports = {getAllItems, addItems, updateItems, getItemsById, deleteItemsById};
+module.exports = {getAllCategory, addCategory, updateCategory, getCategoryById, deleteCategoryById};

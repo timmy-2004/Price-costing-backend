@@ -4,7 +4,12 @@ const bodyParser = require('body-parser');
 
 
 // Routes
+const itemRouter = require('./src/routes/item.routes')
  const priceRouter = require('./src/routes/price.routes')
+ const categoryRouter = require('./src/routes/category.routes')
+
+
+
 const userRouter = require('./src/routes/user.routes')
 
 const app = express();
@@ -32,8 +37,10 @@ app.get("/",(request, response) => {
 
 
 
-// app.use( '/api/item', itemRouter)
+app.use( '/api/items', itemRouter)
 app.use( '/api/price',priceRouter)
+app.use( '/api/category',categoryRouter)
+
 
 app.use( '/api/user', userRouter)
 

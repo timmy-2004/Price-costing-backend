@@ -1,17 +1,32 @@
 const mongoose = require('mongoose'); 
 
 const itemSchema = new mongoose.Schema({
-    image: {
-        type: mongoose.SchemaTypes.String,
-        required: true,
-        unique: true,
-    },
-    item: {
+    itemId: {
         type: mongoose.SchemaTypes.String,
         required: true,
     },
-    price: {
+    title: {
         type: mongoose.SchemaTypes.String,
+        required: true,
+    },
+    picture: {
+        type: mongoose.SchemaTypes.Array,
+        required: true,
+    },
+    modelNum:{
+        type: mongoose.SchemaTypes.Number,
+        required: true,
+    },
+    categoryId: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+    },
+    description:{
+        type: mongoose.SchemaTypes.String,
+        required: true,
+    },
+    tags:{
+        type: mongoose.SchemaTypes.Array,
         required: true,
     },
     date: {
@@ -19,7 +34,7 @@ const itemSchema = new mongoose.Schema({
         required: true,
         default: new Date(),
     },
-    vendorName: {
+    manufacturer: {
         type: mongoose.SchemaTypes.String,
         required: true,
     },
@@ -28,7 +43,12 @@ const itemSchema = new mongoose.Schema({
         required: true,
     },
     phoneNumber: {
-        tyoe: mongoose.SchemaTypes.Number
+        type: mongoose.SchemaTypes.Number,
+    },
+    quantity: {
+        type: mongoose.SchemaTypes.Number,
+        required:true,
+
     }
 }); 
 
