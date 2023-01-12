@@ -1,14 +1,11 @@
 
 const express = require('express');
+const bodyParser = require('body-parser');
 
 
 // Routes
-//  const itemRouter = require('./src/routes/item.routes')
  const priceRouter = require('./src/routes/price.routes')
-// const marketRoute = require('./routes/market');
-// const authRoute = require('./routes/auth')
-
-
+const userRouter = require('./src/routes/user.routes')
 
 const app = express();
 const PORT = 6000;
@@ -19,6 +16,8 @@ require('./src/config/database')
   
 app.use(express.json())
 app.use(express.urlencoded());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
@@ -35,10 +34,8 @@ app.get("/",(request, response) => {
 
 // app.use( '/api/item', itemRouter)
 app.use( '/api/price',priceRouter)
-// app.use( '/api/market',marketRoute)
-// app.use( '/api/auth',authRoute)
 
-
+app.use( '/api/user', userRouter)
 
 app.listen(PORT, () => console.log(`Running Express on Port ${PORT}!`));
 

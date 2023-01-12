@@ -6,12 +6,23 @@ const UserSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
+    userName: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+    },
     password: {
         type: mongoose.SchemaTypes.String,
         required: true,
     },
+    status: {
+        type: mongoose.SchemaTypes.String,
+        default: "Pending"
+    },
     forgotPassword: {
-        type: mongoose.Schema
+        type: mongoose.SchemaTypes.String,
+    },
+    role: {
+        type: mongoose.SchemaTypes.String,
     },
     createdAt: {
         type: mongoose.SchemaTypes.Date,
@@ -20,4 +31,6 @@ const UserSchema = new mongoose.Schema({
     }
 }); 
 
-module.exports = mongoose.model('users', UserSchema);
+const Users = mongoose.model('users', UserSchema);
+
+module.exports =   Users ;

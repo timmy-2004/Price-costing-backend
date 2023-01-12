@@ -1,7 +1,7 @@
 const mongoose = require('mongoose'); 
 
 const priceSchema = new mongoose.Schema({
-    item: {
+    itemId: {
         type: mongoose.SchemaTypes.String,
         required: true,
         unique: true,
