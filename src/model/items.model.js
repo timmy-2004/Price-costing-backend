@@ -29,6 +29,10 @@ const itemSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.Array,
         required: true,
     },
+    features:{
+        type: mongoose.SchemaTypes.Array,
+        required: true,
+    },
     date: {
         type: mongoose.SchemaTypes.Date,
         required: true,

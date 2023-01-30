@@ -2,7 +2,7 @@ const {Router}= require('express');
 
 const router = Router();
 const itemController = require('../controller/items.controller');
-
+const {verifyToken} = require('../utils/helpers')
 const {createItemValidator} = require('../validator/item.validator')
 
 
@@ -17,10 +17,9 @@ const {createItemValidator} = require('../validator/item.validator')
 
  router.put('/:itemId', itemController.updateItems)
 
- router.get('/:itemId', itemController.getItemsById)
+ router.get('/:itemId', verifyToken,itemController.getItemsById)
 
- router.delete('/:itemId', itemController.deleteItemsById)
-
+ router.delete('/:itemId',verifyToken,itemController.deleteItemsById)
 
 
  module.exports = router

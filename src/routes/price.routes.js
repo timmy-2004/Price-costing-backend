@@ -3,7 +3,7 @@ const {Router}= require('express');
 const router = Router();
 const priceController = require('../controller/price.controller')
 const {createPriceValidator} = require('../validator/price.validator')
-const {signup} = 
+const {verifyToken} = require('../utils/helpers')
 
  
 
@@ -16,14 +16,14 @@ const {signup} =
 
  router.get('/:id',    priceController.getPriceHistoryById);
  
-  router.get('/status/:status',    priceController.getPriceHistoryByStatus)
+  router.get('/status/:status', verifyToken, priceController.getPriceHistoryByStatus)
   
  
- router.get('/verification', priceController.priceVerification);
+ router.get('/verification', verifyToken, priceController.priceVerification);
 
- router.post('/acceptnewprice',createPriceValidator,   priceController.newPrice)
+ router.post('/acceptnewprice', verifyToken, createPriceValidator,   priceController.newPrice)
 
- router.delete('/deletenewprice',createPriceValidator,   priceController.DeletePrice)
+ router.delete('/deletenewprice', verifyToken, createPriceValidator,   priceController.DeletePrice)
 
 
  module.exports = router

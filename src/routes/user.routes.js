@@ -12,8 +12,8 @@ router.post('/signup', signUpValidator,  userController.userSignup);
 router.post('/signin',   userController.signin);
 
 
-router.patch('/update-status/:userId', verifyToken,   userController.updateUserStatus);
-router.get('/:userId', verifyToken, userController.getUserid)
-// router.get('/allusers, verifyToken, userController.getAllUsers')
+router.patch('/update-status/:userId', userController.updateUserStatus);
+router.get('/:userId', userController.getUserid)
+router.get('/', userController.getAllUsers)
 
-module.exports = router
+module.exports = router 
