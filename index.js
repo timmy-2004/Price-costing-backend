@@ -1,6 +1,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 
 // Routes
@@ -13,20 +14,21 @@ const itemRouter = require('./src/routes/item.routes')
 const userRouter = require('./src/routes/user.routes')
 
 const app = express();
-const PORT = 6000;
+const PORT = 8081;
 
 require('./src/config/database')
 
 
   
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 
 
-    
+     
 
 // Middle ware      
 app.get("/",(request, response) => {
@@ -35,7 +37,7 @@ app.get("/",(request, response) => {
 })
 
 
-
+  
 
 app.use( '/api/items', itemRouter)
 app.use( '/api/price',priceRouter)

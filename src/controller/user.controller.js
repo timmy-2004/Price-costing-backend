@@ -41,7 +41,7 @@ async function signin (request, response) {
   const {email, password} = request.body;
    if ( !email || !password )return response.status(400).send({message: "invalid input parameter", });
    const userDb = await Users.findOne({ email });
-   if (!userDb) return response.send(401);
+   if (!userDb) return response. send(401);
    const isValid = await passwordUtils.comparePassword(password, userDb.password);
    console.log(isValid);
 
@@ -61,6 +61,28 @@ async function signin (request, response) {
    }
    
 }
+async function getAllUsers(request, response) {
+  console.log('user');
+  try{
+      const users= await  Users.find()
+      response.status(200).send({
+          status : "success",
+          message: "items fetched succesfully",
+          data: users 
+      })
+
+
+  }catch(err){
+      console.log(err)
+      response.status(500).send({
+          status : "error",
+          message: "server error",
+          data: null
+      })
+  }
+
+};
+
 
 async function updateUserStatus (request, response) {
   try {
@@ -85,27 +107,26 @@ async function updateUserStatus (request, response) {
 }
 
 async function getUserid (request, response) {
-  console.log("ywk")
-//   try {
-//     const userId = request.params.userId
-//     console.log(userId);
-//     const query = {userId : userId}
-//     const users = await Users.findOne(query)
+  try {
+    const userId = request.params.userId
+    console.log(userId);
+    const query = {userId : userId}
+    const users = await Users.findOne(query)
 
-//     response.status(200).send({
-//       status : "success",
-//       message:"User sucessfully created",
-//       data: saveUser
-//   })
+    response.status(200).send({
+      status : "success",
+      message:"User sucessfully created",
+      data: saveUser
+  })
 
-// }catch(err){
-//   console.log(err)
-//   response.status(500).send({
-//       status : "error",
-//       message: "Could not get user id",
-//       data: null
-//    })
-// }
+}catch(err){
+  console.log(err)
+  response.status(500).send({
+      status : "error",
+      message: "Could not get user id",
+      data: null
+   })
 }
-module.exports = {userSignup, updateUserStatus, getUserid, signin };
+}
+module.exports = {userSignup, updateUserStatus, getUserid, signin, getAllUsers };
 

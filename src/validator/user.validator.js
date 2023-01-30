@@ -32,14 +32,14 @@ exports.signUpValidator = [
       'password  is required. Minimum of 8 characters required.'
     ),
 
-    check('role')
-    .trim()
-    .isString()
-    .withMessage('Role Has to be a string.')
-    .isLength({ min: 3 })
-    .withMessage(
-      'Role  is required. Minimum of 3 characters required.'
-    ),
+    // check('role')
+    // .trim()
+    // .isString()
+    // .withMessage('Role Has to be a string.')
+    // .isLength({ min: 3 })
+    // .withMessage(
+    //   'Role  is required. Minimum of 3 characters required.'
+    // ),
     
     
     
