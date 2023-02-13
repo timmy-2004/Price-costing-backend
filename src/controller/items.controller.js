@@ -1,5 +1,7 @@
 const itemModel = require('../model/items.model')
 
+const priceModel = require('../model/price.model')
+
 async function getAllItems(request, response) {
     console.log('item');
     try{
@@ -50,11 +52,57 @@ async function updateItems(request, response) {
     try{
         const itemId = request.params.itemId
         console.log(itemId);
-        const query = {itemId :itemId}
+        const query = {_id:itemId}
         const items = await  itemModel.updateOne(query, request.body)
         response.status(200).send({
             status : "success",
             message: "item updated succesfully",
+            data: items
+        })
+    
+
+    }catch(err){
+        console.log(err)
+        response.status(500).send({
+            status : "error",
+            message: "server error",
+            data: null
+        })
+    }
+};
+async function updateItemPic(request, response) {
+    try{
+        const itemId = request.params.itemId
+        console.log(itemId);
+        const query = {_id:itemId}
+        const currentPrice = {$push:request.body.picture}
+        const items = await  itemModel.updateOne(query, currentPrice)
+        response.status(200).send({
+            status : "success",
+            message: "item updated into array succesfully",
+            data: items
+        })
+    
+
+    }catch(err){
+        console.log(err)
+        response.status(500).send({
+            status : "error",
+            message: "server error",
+            data: null
+        })
+    }
+};
+async function updatePriceHistory(request, response) {
+    try{
+        const itemId = request.params.itemId
+        console.log(itemId);
+        const query = {_id:itemId}
+        const currentPrice = {$push:{priceHistory:request.body}}
+        const items = await  itemModel.updateOne(query, currentPrice)
+        response.status(200).send({
+            status : "success",
+            message: "item updated into array succesfully",
             data: items
         })
     
@@ -74,7 +122,7 @@ async function getItemsById(request, response) {
     try{
         const itemId = request.params.itemId
         console.log(itemId);
-        const query = {itemId :itemId}
+        const query = {_id :itemId}
         const items = await  itemModel.findOne(query)
         response.status(200).send({
             status : "success",
@@ -120,4 +168,4 @@ async function deleteItemsById(request, response) {
 
 
 
-module.exports = {getAllItems, addItems, updateItems, getItemsById, deleteItemsById};
+module.exports = {getAllItems, addItems, updateItems, getItemsById, deleteItemsById, updatePriceHistory, updateItemPic };

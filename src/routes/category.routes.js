@@ -11,9 +11,9 @@ const {verifyToken} = require('../utils/helpers')
 
 
 
- router.get('/',    categoryController.getAllCategory);
+ router.get('/',   verifyToken, categoryController.getAllCategory);
  
- router.post('/addcategory',verifyToken,categoryController.addCategory);
+ router.post('/addcategory',categoryController.addCategory);
 
  router.put('/:categoryId',verifyToken,categoryController.updateCategory)
 

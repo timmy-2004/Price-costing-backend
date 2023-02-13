@@ -13,11 +13,16 @@ const {createItemValidator} = require('../validator/item.validator')
 
  router.get('/',    itemController.getAllItems);
  
- router.post('/additems', createItemValidator, itemController.addItems);
+ router.post('/additems',  createItemValidator, itemController.addItems);
 
- router.put('/:itemId', itemController.updateItems)
+//  router.put('/array/:itemId', verifyToken, itemController.updateItems)
 
- router.get('/:itemId', verifyToken,itemController.getItemsById)
+ router.put('/:itemId', verifyToken, itemController.updatePriceHistory)
+
+ router.put('/:itemId',verifyToken,itemController.updateItemPic)
+
+
+ router.get('/:itemId',  itemController.getItemsById)
 
  router.delete('/:itemId',verifyToken,itemController.deleteItemsById)
 
