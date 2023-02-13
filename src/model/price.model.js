@@ -1,13 +1,24 @@
 const mongoose = require('mongoose'); 
 
 const priceSchema = new mongoose.Schema({
-    itemId: {
+    priceHistory: {
         type: mongoose.SchemaTypes.String,
         required: true,
-        unique: true,
     },
-    price: {
+    vendorName: {
         type: mongoose.SchemaTypes.String,
+        required: true,
+    },
+    vendorAddress: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+    },
+    discount: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+    },
+    phoneNumber: {
+        type: mongoose.SchemaTypes.Number,
         required: true,
     },
     createdAt: {

@@ -42,6 +42,10 @@ const itemSchema = new mongoose.Schema({
         type: mongoose.SchemaTypes.String,
         required: true,
     },
+    brandType: {
+        type: mongoose.SchemaTypes.String,
+        required: true,
+    },
     vendorAddress: {
         type: mongoose.SchemaTypes.String,
         required: true,
@@ -52,7 +56,10 @@ const itemSchema = new mongoose.Schema({
     quantity: {
         type: mongoose.SchemaTypes.Number,
         required:true,
-
+    },
+    priceHistory: {
+        type: mongoose.SchemaTypes.Array,
+        required:true,
     }
 }); 
 

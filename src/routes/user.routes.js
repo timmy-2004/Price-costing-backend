@@ -7,12 +7,12 @@ const { hashPassword,comparePassword,verifyToken } = require('../utils/helpers')
 
 
 
-router.post('/signup', signUpValidator,  userController.userSignup);
+router.post('/signup',  signUpValidator,  userController.userSignup);
 
-router.post('/signin',   userController.signin);
+router.post('/signin', userController.signin);
 
 
-router.patch('/update-status/:userId', userController.updateUserStatus);
+router.patch('/update-status/:userId',  userController.updateUserStatus);
 router.get('/:userId', userController.getUserid)
 router.get('/', userController.getAllUsers)
 

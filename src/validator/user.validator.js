@@ -16,7 +16,7 @@ exports.signUpValidator = [
     .withMessage('userName has to be have letters and numbers')
     .isString()
     .withMessage('userName Has to be a string.')
-    .isLength({ min: 5 })
+    .isLength({ min: 3 })
     .withMessage(
       'userName  is required. Minimum of three characters required.'
     ),

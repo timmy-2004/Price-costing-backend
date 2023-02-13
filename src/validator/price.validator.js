@@ -1,14 +1,6 @@
 const { check, validationResult } = require('express-validator');
 
 exports.createPriceValidator = [
-  check('itemId')
-    .trim()
-    .isString()
-    .withMessage('itemId Has to be a string.')
-    .isLength({ min: 3 })
-    .withMessage(
-      'itemId  is required. Minimum of three characters required.'
-    ),
     check('price')
     .trim()
     .isString()

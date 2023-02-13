@@ -5,8 +5,8 @@ async function getPriceHistoryForItem(request, response) {
     console.log('history');
     try{
         const itemId = request.params.itemId
-        const query = {itemId :itemId}
-        const prices = await  priceModel.find(query)
+        const query = {_id :itemId}
+        const prices = await  priceModel.findOne(query)
         response.status(200).send({
             status : "success",
             message: "Price fetched succesfully",
@@ -51,7 +51,8 @@ async function getPriceHistory(request, response) {
 // Price verification
 async function priceVerification(request, response)  {
     console.log('history');
-    response.status(200).send("Gotten price verification")
+    response.status(200).send("Gotten price verification");
+    
 };
 
 async function newPrice(request, response) {
@@ -78,9 +79,9 @@ async function newPrice(request, response) {
 
 // Price history by id
 async function getPriceHistoryById(request, response) {
-    console.log('Getting History by id');
     try{
         const id = request.params.id
+        console.log(id);
         const query = {_id :id}
         const prices = await  priceModel.findOne(query)
         response.status(200).send({
@@ -149,4 +150,4 @@ async function DeletePrice(request, response) {
     }
 };
 
-module.exports = {DeletePrice,getPriceHistoryForItem,getPriceHistory,getPriceHistoryById,getPriceHistoryByStatus, priceVerification, newPrice};
+module.exports = {DeletePrice,getPriceHistoryForItem,getPriceHistory,getPriceHistoryById,getPriceHistoryByStatus, getPriceHistory, priceVerification, newPrice};

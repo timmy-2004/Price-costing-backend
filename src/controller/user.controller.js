@@ -38,9 +38,9 @@ async function userSignup  (request, response)  {
   }
 };
 async function signin (request, response) {
-  const {email, password} = request.body;
-   if ( !email || !password )return response.status(400).send({message: "invalid input parameter", });
-   const userDb = await Users.findOne({ email });
+  const {userName, password} = request.body;
+   if ( !userName || !password )return response.status(400).send({message: "invalid input parameter", });
+   const userDb = await Users.findOne({ userName });
    if (!userDb) return response. send(401);
    const isValid = await passwordUtils.comparePassword(password, userDb.password);
    console.log(isValid);

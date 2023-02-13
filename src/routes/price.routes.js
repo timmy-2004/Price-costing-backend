@@ -9,21 +9,20 @@ const {verifyToken} = require('../utils/helpers')
 
 
 
-
  router.get('/history/:itemId',    priceController.getPriceHistoryForItem);
 
- router.get('/history',    priceController.getPriceHistory);
+ router.get('/',    priceController.getPriceHistory);
 
  router.get('/:id',    priceController.getPriceHistoryById);
  
   router.get('/status/:status', verifyToken, priceController.getPriceHistoryByStatus)
   
  
- router.get('/verification', verifyToken, priceController.priceVerification);
+ router.get('/verification',  priceController.priceVerification);
 
- router.post('/acceptnewprice', verifyToken, createPriceValidator,   priceController.newPrice)
+ router.post('/acceptnewprice',  createPriceValidator,   priceController.newPrice)
 
- router.delete('/deletenewprice', verifyToken, createPriceValidator,   priceController.DeletePrice)
+ router.delete('/deletenewprice', createPriceValidator,   priceController.DeletePrice)
 
 
  module.exports = router
