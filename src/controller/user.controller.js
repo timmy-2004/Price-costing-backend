@@ -67,7 +67,7 @@ async function getAllUsers(request, response) {
       const users= await  Users.find()
       response.status(200).send({
           status : "success",
-          message: "items fetched succesfully",
+          message: "users fetched succesfully",
           data: users 
       })
 

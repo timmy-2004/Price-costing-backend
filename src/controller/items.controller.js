@@ -33,7 +33,7 @@ async function addItems(request, response) {
         const saveItem = await  itemModel.create(data)
         response.status(200).send({
             status : "success",
-            message: "Price added succesfully",
+            message: "item added succesfully",
             data: saveItem
         })
     
@@ -146,7 +146,7 @@ async function deleteItemsById(request, response) {
     try{
         const itemId = request.params.itemId
         console.log(itemId);
-        const query = {itemId :itemId}
+        const query = {_id :itemId}
         const items = await  itemModel.deleteOne(query)
         response.status(200).send({
             status : "success",

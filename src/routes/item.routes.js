@@ -24,7 +24,7 @@ const {createItemValidator} = require('../validator/item.validator')
 
  router.get('/:itemId',  itemController.getItemsById)
 
- router.delete('/:itemId',verifyToken,itemController.deleteItemsById)
+ router.delete('/:itemId',itemController.deleteItemsById)
 
 
  module.exports = router

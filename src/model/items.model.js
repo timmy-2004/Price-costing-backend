@@ -1,10 +1,10 @@
 const mongoose = require('mongoose'); 
 
 const itemSchema = new mongoose.Schema({
-    itemId: {
-        type: mongoose.SchemaTypes.String,
-        required: true,
-    },
+    // itemId: {
+    //     type: mongoose.SchemaTypes.String,
+    //     required: true,
+    // },
     title: {
         type: mongoose.SchemaTypes.String,
         required: true,
@@ -19,7 +19,7 @@ const itemSchema = new mongoose.Schema({
     },
     categoryId: {
         type: mongoose.SchemaTypes.String,
-        required: true,
+        // required: true,
     },
     description:{
         type: mongoose.SchemaTypes.String,
@@ -40,26 +40,26 @@ const itemSchema = new mongoose.Schema({
     },
     manufacturer: {
         type: mongoose.SchemaTypes.String,
-        required: true,
+        // required: true,
     },
     brandType: {
         type: mongoose.SchemaTypes.String,
-        required: true,
+        // required: true,
     },
     vendorAddress: {
         type: mongoose.SchemaTypes.String,
-        required: true,
+        // required: true,
     },
     phoneNumber: {
         type: mongoose.SchemaTypes.Number,
     },
     quantity: {
         type: mongoose.SchemaTypes.Number,
-        required:true,
+        // required:true,
     },
     priceHistory: {
         type: mongoose.SchemaTypes.Array,
-        required:true,
+        // required:true,
     }
 }); 
 
